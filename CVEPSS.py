@@ -7,9 +7,7 @@ import nvdlib
 from epss_api import EPSS
 import argparse
 from tabulate import tabulate
-
-
-       
+ 
 
 def cve_cpeValues(cpe):
     try:
@@ -105,7 +103,6 @@ def loading_data(cveID):
             pass
 
     return cve_data
-    
     
 def get_cve_data(cve_id):
     try:
