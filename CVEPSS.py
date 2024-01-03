@@ -168,7 +168,7 @@ def get_epss_score(cveId):
 
 def load():
     print("""\n\t\tWritten by Ferdi Gül @2024\n\t ▁ ▂ ▄ ▅ ▆ ▇ █ CVEPSS v1.0 █ ▇ ▆ ▅ ▄ ▂ ▁\n""")
-    parser = argparse.ArgumentParser(description="CVEPSS")
+    parser = argparse.ArgumentParser(description="he CVEPSS v1.0 calculates EPSS and CVSS scores and retrieves CVE details for a vulnerability identified by a given CVE ID")
     parser.add_argument("--id", required=True, help="Usage: python3 CVEPSS.py --id CVE-2023-XXXXX (CVE ID to analyze)")
     args = parser.parse_args()
     return args
