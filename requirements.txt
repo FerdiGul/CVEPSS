@@ -1,7 +1,6 @@
 epss-api
 nvdlib
 requests
-re
 textwrap
 argparse
 tabulate
