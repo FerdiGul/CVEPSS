@@ -14,4 +14,4 @@ Example:
 
 $ python3 CVEPSS.py --id CVE-2023-36845
 
-<img width="968" alt="Screenshot 2024-01-03 at 15 15 03" src="https://github.com/FerdiGul/CVEPSS/assets/17753652/f3e606dd-3cdd-46b5-bca9-912b5e4f670d">
+<img width="550" alt="Screenshot 2024-01-03 at 15 15 03" src="https://github.com/FerdiGul/CVEPSS/assets/17753652/f3e606dd-3cdd-46b5-bca9-912b5e4f670d">
