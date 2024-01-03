@@ -1,0 +1,9 @@
+epss-api
+nvdlib
+requests
+sys
+time
+re
+textwrap
+argparse
+tabulate
