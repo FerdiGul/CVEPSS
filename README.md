@@ -2,7 +2,7 @@
        ▁ ▂ ▄ ▅ ▆ ▇ █ CVEPSS v1.0 █ ▇ ▆ ▅ ▄ ▂ ▁
        
 # CVEPSS v1.0
-A program that calculates the EPSS and CVSS scores for a vulnerability. This Python program provides a user interface prompting the user to enter a CVE ID (Common Vulnerabilities and Exposures). It then retrieves and displays the EPSS (Exploit Prediction Scoring System) and CVSS (Common Vulnerability Scoring System) scores for the entered CVE ID.
+The CVEPSS v1.0 calculates EPSS and CVSS scores and retrieves CVE details for a vulnerability identified by a given CVE ID (Common Vulnerabilities and Exposures). This program prompts the user to enter a CVE ID and then fetches and displays the associated CVE details.
 
 # Install Requirements
 $ pip install -r requirements.txt
