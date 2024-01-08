@@ -8,14 +8,11 @@ from epss_api import EPSS
 import argparse
 from tabulate import tabulate
  
-
 def cve_cpeValues(cpe):
     try:
-
         padding=76
         print("\n" + "─"*((padding//2)-2)+"CPE"+"─"*((padding//2)-1))
-       
-            
+                 
         if cpe is not None and len(cpe) > 0:
             for cpe_value in cpe:
                 print(cpe_value)
@@ -61,7 +58,6 @@ def cve_description(description):
         return None  
     
 def cve_output(cve_data,epss,percentile):
-      
     if cve_data is not None:
         headers = [
             "Property",
@@ -80,8 +76,7 @@ def cve_output(cve_data,epss,percentile):
             ["Confidentiality Impact", cve_data[7]],
             ["Integrity Impact", cve_data[8]],
             ["Availability Impact",cve_data[9]],
-            ["URL", cve_data[10]]
-            
+            ["URL", cve_data[10]]   
         ]
         print("\n")
         print(tabulate(data, headers=headers, tablefmt="pretty", showindex=False, numalign="right", stralign="right", colalign=("left", "left")))
@@ -143,7 +138,6 @@ def get_cve_data(cve_id):
         print(f"Error retrieving CVE Details: {e}")
         return None
 
-
 def get_epss_score(cveId):
     client = EPSS()
     try:
@@ -152,10 +146,10 @@ def get_epss_score(cveId):
         if epss_score is None:
             print(f"{cveId} was not found!")
             sys.exit()
-
+         
         epssScore = f"{epss_score * 100:.3f}"
-
         percentile_score = client.percentile(cve_id=cveId)
+     
         if percentile_score is not None:
             intPercentile = int(percentile_score * 100)
             percentileScore = f"~{intPercentile}% (the Proportion of Vulnerabilities that are scored at or less)"
@@ -168,7 +162,6 @@ def get_epss_score(cveId):
         print(f"Error retrieving EPSS score: {e}")
         return None, None
 
- 
 def load():
     print("""\n\t\tWritten by Ferdi Gül @2024\n\t ▁ ▂ ▄ ▅ ▆ ▇ █ CVEPSS v1.0 █ ▇ ▆ ▅ ▄ ▂ ▁\n""")
     parser = argparse.ArgumentParser(description="The CVEPSS v1.0 calculates EPSS and CVSS scores and retrieves CVE details for a vulnerability identified by a given CVE ID")
@@ -177,11 +170,10 @@ def load():
     return args
     
 if __name__ == "__main__":
-    
     args = load()
     cve_id = args.id
     epss,percentile = get_epss_score(cve_id)
     cve_data = get_cve_data(cve_id)
     cve_output(cve_data,epss,percentile)
-  
+
 
