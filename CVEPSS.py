@@ -163,7 +163,7 @@ def get_epss_score(cveId):
 
         percentile = client.percentile(cve_id=cveId)
         if percentile is not None:
-            percentileScore = percentile + " the proportion of vulnerabilities that are scored at or less"
+            percentileScore = str(percentile) +"% "+ + "the proportion of vulnerabilities that are scored at or less"
         else:
             percentileScore="Percentile Score Not Found"
         return epssScore,percentileScore
