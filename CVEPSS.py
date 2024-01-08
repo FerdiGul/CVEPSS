@@ -69,7 +69,7 @@ def cve_output(cve_data,epss):
         ]
         data = [
             ["CVSS Score", cve_data[0]],
-            ["EPSS Score", epss],
+            ["EPSS Score (%)", epss],
             ["Severity", cve_data[1]],
             ["Published", cve_data[2]],
             ["Last Modified", cve_data[3]],
@@ -156,7 +156,7 @@ def get_epss_score(cveId):
         epss_score = client.epss(cve_id=cveId)
         if epss_score is not None:
             #print("EPSS score:", epss_score)
-            epssScore = epss_score
+            epssScore = epss_score*100
         else:
             epssScore="EPSS Score Not Found"
         
