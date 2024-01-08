@@ -154,13 +154,19 @@ def get_epss_score(cveId):
     client = EPSS()
     try:
         epss_score = client.epss(cve_id=cveId)
+     
         if epss_score is not None:
-            #print("EPSS score:", epss_score)
             epssScore = epss_score*100
         else:
             epssScore="EPSS Score Not Found"
-        
-        return epssScore
+
+        percentile = client.percentile(cve_id=cveId)
+        if percentile is not None:
+            percentileScore = percentile
+        else:
+            percentileScore="Percentile Score Not Found"
+        return epssScore,percentileScore
+     
     except Exception as e:
         print(f"Error retrieving EPSS score: {e}")
         return None
