@@ -60,7 +60,7 @@ def cve_description(description):
         print(f"Error retrieving Description: {e}")
         return None  
     
-def cve_output(cve_data,epss):
+def cve_output(cve_data,epss,percentile):
       
     if cve_data is not None:
         headers = [
@@ -70,6 +70,7 @@ def cve_output(cve_data,epss):
         data = [
             ["CVSS Score", cve_data[0]],
             ["EPSS Score (%)", epss],
+            ["Percentile", percentile],
             ["Severity", cve_data[1]],
             ["Published", cve_data[2]],
             ["Last Modified", cve_data[3]],
@@ -162,7 +163,7 @@ def get_epss_score(cveId):
 
         percentile = client.percentile(cve_id=cveId)
         if percentile is not None:
-            percentileScore = percentile
+            percentileScore = percentile + " the proportion of vulnerabilities that are scored at or less"
         else:
             percentileScore="Percentile Score Not Found"
         return epssScore,percentileScore
@@ -183,8 +184,8 @@ if __name__ == "__main__":
     
     args = load()
     cve_id = args.id
-    epss = get_epss_score(cve_id)
+    epss,percentile = get_epss_score(cve_id)
     cve_data = get_cve_data(cve_id)
-    cve_output(cve_data,epss)
+    cve_output(cve_data,epss,percentile)
   
 
