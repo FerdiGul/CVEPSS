@@ -108,67 +108,21 @@ def loading_data(cveID):
 def get_cve_data(cve_id):
     try:
         cve_data = loading_data(cve_id)
-        
-        if hasattr(cve_data, 'cpe'):
-            cpe_value = cve_data.cpe
-        else:
-            cpe_value = None        
-        
-        if hasattr(cve_data, 'url'):
-            cve_url = cve_data.url
-        else:
-            cve_url = "URL not Found"
-       
-        if hasattr(cve_data, 'references'):
-            cve_references = cve_data.references
-        else:
-            cve_references = None
-         
-        if hasattr(cve_data, 'descriptions'):
-            cve_description = cve_data.descriptions[0].value
-        else:
-            cve_description = None
-        if hasattr(cve_data, 'v31score'):
-            cve_v31score = cve_data.v31score
-        else:
-            cve_v31score = None
-        if hasattr(cve_data, 'v31severity'):
-            cve_v31severity = cve_data.v31severity
-        else:
-            cve_v31severity = None
-        if hasattr(cve_data, 'v31exploitability'):
-            cve_v31exploitability = cve_data.v31exploitability
-        else:
-            cve_v31exploitability = None
-        if hasattr(cve_data, 'v31impactScore'):
-            cve_v31impactScore = cve_data.v31impactScore
-        else:
-            cve_v31impactScore = None
-        if hasattr(cve_data, 'v31attackVector'):
-            cve_v31attackVector = cve_data.v31attackVector
-        else:
-            cve_v31attackVector = None
-        if hasattr(cve_data, 'v31confidentialityImpact'):
-            cve_v31confidentialityImpact = cve_data.v31confidentialityImpact
-        else:
-            cve_v31confidentialityImpact = None            
-        if hasattr(cve_data, 'v31integrityImpact'):
-            cve_v31integrityImpact = cve_data.v31integrityImpact
-        else:
-            cve_v31integrityImpact = None                 
-        if hasattr(cve_data, 'v31availabilityImpact'):
-            cve_v31availabilityImpact= cve_data.v31availabilityImpact
-        else:
-            cve_v31availabilityImpact = None     
-        if hasattr(cve_data, 'published'):
-            cve_published= cve_data.published
-        else:
-            cve_published = None  
-        if hasattr(cve_data, 'lastModified'):
-            cve_lastModified = cve_data.lastModified
-        else:
-            cve_lastModified = None              
-                               
+        cve_v31score = getattr(cve_data, 'v31score', None)
+        cve_v31severity = getattr(cve_data, 'v31severity', None)
+        cve_published = getattr(cve_data, 'published', None)
+        cve_lastModified = getattr(cve_data, 'lastModified', None)
+        cve_v31exploitability = getattr(cve_data, 'v31exploitability', None)
+        cve_v31impactScore = getattr(cve_data, 'v31impactScore', None)
+        cve_v31attackVector = getattr(cve_data, 'v31attackVector', None)
+        cve_v31confidentialityImpact = getattr(cve_data, 'v31confidentialityImpact', None)
+        cve_v31integrityImpact = getattr(cve_data, 'v31integrityImpact', None)
+        cve_v31availabilityImpact = getattr(cve_data, 'v31availabilityImpact', None)
+        cve_url = getattr(cve_data, 'url', 'URL not Found')
+        cve_references = getattr(cve_data, 'references', None)
+        cve_description = getattr(cve_data.descriptions[0], 'value', None) if hasattr(cve_data, 'descriptions') else None
+        cpe_value = getattr(cve_data, 'cpe', None)
+
         return [
             cve_v31score,
             cve_v31severity,
@@ -184,13 +138,12 @@ def get_cve_data(cve_id):
             cve_references,
             cpe_value,
             cve_description,
-  
         ]
     except Exception as e:
         print(f"Error retrieving CVE Details: {e}")
         return None
 
-        
+
 def get_epss_score(cveId):
     client = EPSS()
     try:
