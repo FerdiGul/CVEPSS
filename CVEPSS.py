@@ -154,7 +154,7 @@ def get_epss_score(cveId):
                 percentileScore = "Not Found"
         else:
             epssScore = "Not Found"
-            percentileScore = "Percentile Score Not Found"
+            percentileScore = "Not Found"
             
         return epssScore, percentileScore
 
