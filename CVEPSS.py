@@ -143,19 +143,19 @@ def get_epss_score(cveId):
     try:
         epss_score = client.epss(cve_id=cveId)
 
-        if epss_score is None:
-            print(f"{cveId} was not found!")
-            sys.exit()
-         
-        epssScore = f"{epss_score * 100:.3f}"
-        percentile_score = client.percentile(cve_id=cveId)
+        if epss_score is not None:
+            epssScore = f"{epss_score*100:.3f}"
+            percentile_score = client.percentile(cve_id=cveId)
      
-        if percentile_score is not None:
-            intPercentile = int(percentile_score * 100)
-            percentileScore = f"~{intPercentile}% (the Proportion of Vulnerabilities that are scored at or less)"
+            if percentile_score is not None:
+                intPercentile = int(percentile_score * 100)
+                percentileScore = f"~{intPercentile}% (the Proportion of Vulnerabilities that are scored at or less)"
+            else:
+                percentileScore = "Not Found"
         else:
+            epssScore = "Not Found"
             percentileScore = "Percentile Score Not Found"
-        
+            
         return epssScore, percentileScore
 
     except Exception as e:
